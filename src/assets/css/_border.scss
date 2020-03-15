@@ -1,0 +1,123 @@
+/* 1px细线解决方案 */
+
+/* 四边边框 */
+@mixin border($border-width: 1px, $border-style: solid, $border-color: #D9D9D9, $radius: 0px) {
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: $border-width $border-style $border-color;
+    border-radius: $radius;
+    transform-origin: 0 0;
+
+    // 用以解决边框layer遮盖内容
+    pointer-events: none;
+    z-index: 999;
+    // fix当元素宽度出现小数时，边框可能显示不全的问题
+    // overflow: hidden;
+
+    // 适配dpr进行缩放
+    width: 100%;
+    height: 100%;
+    @media (min-device-pixel-ratio: 1.5) and (max-device-pixel-ratio: 2.49),
+    (min-device-pixel-ratio: 1.5) and (max-device-pixel-ratio: 2.49),
+    (min-resolution: 144dpi) and (max-resolution: 239dpi),
+    (min-resolution: 1.5dppx) and (max-resolution: 2.49dppx) {
+      width: 200%;
+      height: 200%;
+      transform: scale(.5);
+      border-radius: $radius * 2;
+    };
+    @media (min--moz-device-pixel-ratio: 2.5),
+    (-webkit-min-device-pixel-ratio: 2.5),
+    (min-device-pixel-ratio: 2.5),
+    (min-resolution: 240dpi),
+    (min-resolution: 2.5dppx) {
+      width: 300%;
+      height: 300%;
+      transform: scale(.33333);
+      border-radius: $radius * 3;
+    };
+  }
+}
+
+/* 单边边框 */
+@mixin single-border($direction: border-bottom, $border-width: 1px, $border-color: #D9D9D9, $border-style: solid) {
+  position: relative;
+  &:after {
+    content: "";
+    position: absolute;
+    #{$direction}: $border-width $border-color $border-style;
+    @if $direction == border-bottom {
+      bottom: 0;
+      left: 0;
+    } @else if $direction == border-top {
+      top: 0;
+      left: 0;
+    } @else if $direction == border-left {
+      top: 0;
+      left: 0;
+    } @else {
+      top: 0;
+      right: 0;
+    }
+    transform-origin: 0 0;
+
+    // 用以解决边框layer遮盖内容
+    pointer-events: none;
+    z-index: 999;
+    // fix当元素宽度出现小数时，边框可能显示不全的问题
+    // overflow: hidden;
+
+    // 适配dpr，进行缩放
+    width: 100%;
+    height: 1px;
+    @media (min-device-pixel-ratio: 1.5) and (max-device-pixel-ratio: 2.49),
+    (min-device-pixel-ratio: 1.5) and (max-device-pixel-ratio: 2.49),
+    (min-resolution: 144dpi) and (max-resolution: 239dpi),
+    (min-resolution: 1.5dppx) and (max-resolution: 2.49dppx) {
+      @if $direction == border-bottom {
+        width: 100%;
+        height: 1px;
+        transform: scaleY(.5);
+      } @else if $direction == border-top {
+        width: 100%;
+        height: 1px;
+        transform: scaleY(.5);
+      } @else if $direction == border-left {
+        width: 1px;
+        height: 100%;
+        transform: scaleX(.5);
+      } @else {
+        width: 1px;
+        height: 100%;
+        transform: scaleX(.5);
+      }
+    };
+    @media (min--moz-device-pixel-ratio: 2.5),
+    (-webkit-min-device-pixel-ratio: 2.5),
+    (min-device-pixel-ratio: 2.5),
+    (min-resolution: 240dpi),
+    (min-resolution: 2.5dppx) {
+      @if $direction == border-bottom {
+        width: 100%;
+        height: 1px;
+        transform: scaleY(.33333);
+      } @else if $direction == border-top {
+        width: 100%;
+        height: 1px;
+        transform: scaleY(.33333);
+      } @else if $direction == border-left {
+        width: 1px;
+        height: 100%;
+        transform: scaleX(.33333);
+      } @else {
+        width: 1px;
+        height: 100%;
+        transform: scaleX(.33333);
+      }
+    };
+  }
+}

@@ -1,0 +1,25 @@
+@charset "UTF-8";
+
+// 移动端页面设计稿宽度
+$design-width: 750px;
+// 移动端页面设计稿dpr基准值
+$design-dpr: 2;
+// 页面根font-size基准值
+$base-font-size: 16px;
+
+@mixin root-font-size() {
+  html {
+    font-size: rootFontSize();
+  }
+}
+
+// html根元素的font-size
+@function rootFontSize() {
+  // 计算：基准font-size / 设计稿宽度 * dpr * 100vmin
+  @return $base-font-size / $design-width * $design-dpr * 100vmin;
+}
+// 单位px转化为rem
+@function px2rem($px) {
+  @return $px / $base-font-size * 1rem;
+  //@return $px / $base-font-size / $design-dpr * 1rem;
+}

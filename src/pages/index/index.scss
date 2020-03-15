@@ -1,0 +1,278 @@
+@charset "UTF-8";
+
+@import "../../assets/css/common";
+
+.common-header {
+  display: flex;
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: px2rem(44px);
+  padding: px2rem(7.5px) px2rem(14px);
+  box-sizing: border-box;
+  z-index: 100;
+  background: #fff;
+
+  & > a {
+    display: block;
+    margin: px2rem(10px);
+  }
+
+  & > .common-logo {
+    width: px2rem(61.98px);
+  }
+
+  & > .common-search-box {
+    display: flex;
+    align-items: center;
+    position: relative;
+    height: px2rem(24px);
+    margin: 0 px2rem(9.109px);
+    padding: 0 px2rem(11px);
+    color: #999;
+    background: #f4f4f4;
+    border-radius: px2rem(10px);
+    & > svg {
+      display: inline-block ;
+      width: px2rem(12.484px);
+      height: px2rem(12.484px);
+      margin-right: px2rem(4px);
+      vertical-align: middle;
+    }
+    & > .search-text {
+      display: inline-block;
+      width: px2rem(92.5px);
+      //margin-left: px2rem(15px);
+      font-size: px2rem(10px);
+      vertical-align: middle;
+    }
+  }
+
+  & > .common-login {
+    width: px2rem(24px);
+    height: px2rem(24px);
+    & > svg {
+      border-radius: 50%;
+    }
+  }
+
+  & > .common-download-btn {
+    width: px2rem(79.984px);
+    padding: px2rem(3px) 0;
+    font-size: px2rem(13px);
+    color: #fff;
+    text-align: center;
+    background: #fb7299;
+    border-radius: px2rem(3px);
+  }
+}
+
+/* 导航栏 */
+.common-nav {
+  display: flex;
+  align-items: flex-end;
+  position: fixed;
+  top: px2rem(43.97px);
+  width: 100%;
+  height: px2rem(38.984px);
+  z-index: 100;
+  background: #fff;
+
+  & > .nav-container {
+    margin: 0 px2rem(24px) 0 px2rem(24px);
+    overflow: hidden;
+    //box-sizing: border-box;
+  }
+  & > .icon-arrow {
+    position: relative;
+    top: 0;
+    right: px2rem(16px);
+    min-width: px2rem(20px);
+    height: 100%;
+    & > svg {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      margin: auto 0;
+    }
+  }
+
+  .item {
+    display: inline-block;
+    width: initial !important;
+    margin-right: px2rem(35px);
+    font-size: px2rem(13.99998px);
+    color: #757575;
+    & > p { line-height: 2.2; }
+    &.active {
+      color: #fb7299;
+      border-bottom: px2rem(2px) solid #fb7299;
+    }
+  }
+}
+
+/* 导航栏隐藏容器 */
+.nav-all-wrap {
+  position: fixed;
+  top: px2rem(44px);
+  width: 100%;
+  background: #fff;
+  z-index: 101;
+  transition: all .4s;
+  opacity: 0;
+  transform: translateY(-200%);
+
+  & > .nav-list {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    padding: 0 px2rem(14px);
+    box-sizing: border-box;
+    & > .item {
+      margin: 0 px2rem(22px) 0 px2rem(11px);
+      padding: px2rem(8px) 0;
+      font-size: px2rem(13.99998px);
+      color: #757575;
+      & > p {
+        line-height: 2;
+        height: px2rem(30px);
+        box-sizing: border-box;
+        &.active {
+          border-bottom: px2rem(2px) solid #fb7299;
+          color: #fb7299;
+        }
+      }
+    }
+  }
+
+  & > .icon-arrow {
+    width: px2rem(90px);
+    height: px2rem(21.484px);
+    margin: px2rem(10px) auto 0;
+    & > svg {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+
+/* 内容 */
+.content-container {
+  position: relative;
+  padding-top: px2rem(83.98px);
+}
+.index-banner {
+  position: relative;
+  min-height: px2rem(103.984px);
+  margin: 0 px2rem(12px) 0;
+  overflow: hidden;
+  text-align: center;
+  box-sizing: border-box;
+  border-radius: px2rem(10px);
+  background: url("../../assets/images/tv.png") no-repeat center;
+  background-size: contain;
+
+  & > .banner-swiper-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+
+    & > .banner-swiper-pagination {
+      position: absolute;
+      bottom: 0;
+      z-index: 10;
+    }
+  }
+  a, img {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+}
+.banner-swiper-container .swiper-pagination-bullet{
+  width: px2rem(11px);
+  height: px2rem(2px);
+  border-radius: initial;
+}
+
+.index-content {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  position: relative;
+  margin: px2rem(12px) px2rem(12px) 0;
+  font-size: px2rem(13.0001px);
+  a,img { display: block; }
+  a:link { color: #212121; }
+  a:visited { color: #212121; }
+  img {
+    width: 100%;
+    height: 100%;
+  }
+  & > .item {
+    width: px2rem(169.5px);
+    margin-bottom: px2rem(16px);
+    & > .img-wrap {
+      position: relative;
+      width: 100%;
+      height: px2rem(106px);
+      border-radius: px2rem(5px);
+      overflow: hidden;
+      background: url("../../assets/images/tv.png") no-repeat center;
+      background-size: contain;
+      & > .detail {
+        display: flex;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: px2rem(16px);
+        line-height: 1.5;
+        padding: 0 px2rem(10px);
+        color: #fff;
+        font-size: px2rem(12px);
+        white-space: nowrap;
+        background: linear-gradient(180deg, rgba(33,33,33,0), rgba(33,33,33,.5));
+        box-sizing: border-box;
+        & > .wrap {
+          display: flex;
+          align-items: center;
+          height: 100%;
+          margin-right: px2rem(20px);
+          & > svg { height: 100%; margin-right: px2rem(2px);}
+        }
+      }
+    }
+    & > .title {
+      margin: px2rem(5px) 0 0;
+    }
+  }
+}
+/* 横屏幕每行显示3个item */
+@media screen and (orientation:landscape) {
+  .index-content > .item {
+    width: 31.8%;
+  }
+}
+.content-load {
+  position: relative;
+  width: 100%;
+  margin: px2rem(50px) auto 0;
+  font-size: px2rem(12px);
+  color: #999;
+  text-align: center;
+}
+
+/* 页脚 */
+.common-footer {
+  position: relative;
+  margin-top: px2rem(31.5px);
+  padding-bottom: px2rem(7.5px);
+  font-size: px2rem(13px);
+  color: #999;
+  text-align: center;
+  line-height: 2.2;
+}
+
+
