@@ -42,18 +42,13 @@ entryFiles.forEach(dir => {
 plugins.push(
   //提供全局的变量，在模块中使用无需用require、不用写import引入
   new webpack.ProvidePlugin({
+    _: 'lodash',
     $: "jquery",
-    jQuery: "jquery",
-    jquery: "jquery",
-    "window.jQuery": "jquery",
-    "window.$": "jquery",
-    _: 'lodash'
+    jQuery: "jquery"
   })
 )
 
-// node base-config.js 可以打印结果
-// console.log(entry)
-// console.log(plugins)
+// todo
 
 // 导出
 module.exports = {
