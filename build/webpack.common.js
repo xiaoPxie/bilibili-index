@@ -16,9 +16,6 @@ module.exports = {
     }
   },
   externals: {    // 直接通过script标签引用/直接使用cdn，不会被打包，减少打包后的体积
-    // 'vue': 'Vue',
-    // 'vuex': 'Vuex',
-    // 'axios':'axios',
     jquery: 'jQuery',
     _ : 'lodash'
   },

@@ -43,8 +43,8 @@ plugins.push(
   //提供全局的变量，在模块中使用无需用require、不用写import引入
   new webpack.ProvidePlugin({
     _: 'lodash',
-    $: "jquery",
-    jQuery: "jquery"
+    $: 'jquery',
+    jQuery: 'jquery',
   })
 )
 
