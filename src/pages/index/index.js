@@ -7,12 +7,7 @@ import {numberFormat} from '@/assets/js/utils'
 import ApiPath from '@/apis/api-path'
 import {ajax} from '@/apis/ajax';
 
-let loadingFlag = false
-
 jQuery(document).ready(function () {
-
-  // fastclick 300ms
-  FastClick.attach(document.body);
 
   // 展开全部导航
   $('#showNavAllWrap').on('touchstart', function () {
@@ -47,20 +42,20 @@ jQuery(document).ready(function () {
     })
   })
   // 监听页面滚动事件
-  $(window).on('scroll', function(){
-    // 隐藏展开的全部导航组件
-    $('#nav-all-wrap').css({
-      'opacity': '0',
-      'transform': 'translateY(-200%)',
-    })
-
-    let scrollTop = $(window).scrollTop(),  // 窗口滚动高度
-      windowHeight = $(window).height(),    // 可视区域高度
-      scrollHeight = $(document).height()   // body页面整体高度
-    if(scrollTop + windowHeight > (scrollHeight * 0.85) && !loadingFlag) {
-      getDataInfo()
-    }
-  })
+  $(window).on('scroll', _.throttle(function () {
+      // 隐藏展开的全部导航组件
+      $('#nav-all-wrap').css({
+        'opacity': '0',
+        'transform': 'translateY(-200%)',
+      })
+      let scrollTop = $(window).scrollTop(),  // 窗口滚动高度
+        windowHeight = $(window).height(),    // 可视区域高度
+        scrollHeight = $(document).height()   // body页面整体高度
+      if (scrollTop + windowHeight > (scrollHeight * 0.85)) {
+        getDataInfo()
+      }
+    }, 1000)
+  )
 
   // 初始化页面数据
   getDataInfo()
@@ -70,20 +65,15 @@ jQuery(document).ready(function () {
 })
 
 function getDataInfo() {
-  if (loadingFlag) {
-    return false
-  }
-
   ajax({
     url: ApiPath.index.getDataInfo,
     type: 'post',
     data: {page: 1, row: 16},
     beforeSend: () => {
       // 正在拉取数据
-      loadingFlag = true
       $('#content-load').text('正在获取数据，请稍等...')
     },
-    complete: () => loadingFlag = false,
+
   }).then(res => {
     console.log(res);
     let result = res.data
@@ -115,6 +105,7 @@ function getDataInfo() {
     $('#content-load').text('加载失败！ 点击重新获取数据')
   });
 }
+
 function getBannerInfo() {
   ajax({
     url: ApiPath.index.getBannerInfo,
@@ -123,7 +114,7 @@ function getBannerInfo() {
     console.log(res);
     let result = res.data
     let str = ''
-    for(let item of result) {
+    for (let item of result) {
       str += `
             <a href="${item.url}" class="swiper-slide">
               <img src="${item.imgUrl}" alt="">
@@ -158,12 +149,12 @@ function getNavInfo() {
     console.log(res);
     let result = res.data.data
     let str = ''
-    for(let i=0; i<result.length; i++) {
-      if(i === 0) {
+    for (let i = 0; i < result.length; i++) {
+      if (i === 0) {
         str += `
               <a href="${result[i].url}" class="swiper-slide item active"><p>${result[i].name}</p></a>
             `
-      }else {
+      } else {
         str += `
               <a href="${result[i].url}" class="swiper-slide item"><p>${result[i].name}</p></a>
             `
@@ -172,12 +163,12 @@ function getNavInfo() {
     $('#nav-swiper-wrapper').append(str)
 
     str = ''
-    for(let i=0; i<result.length; i++) {
-      if(i === 0) {
+    for (let i = 0; i < result.length; i++) {
+      if (i === 0) {
         str += `
               <a href="${result[i].url}" class="item active"><p class="active">${result[i].name}</p></a>
             `
-      }else {
+      } else {
         str += `
               <a href="${result[i].url}" class="item"><p>${result[i].name}</p></a>
             `
