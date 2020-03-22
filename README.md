@@ -1,4 +1,5 @@
 # 仿bilibili移动端主页
+  <a href="https://github.com/xiaoPxie/vue-bilibili-index">vue版本在这里</a>
 ## 使用 webpack4构建 + jQuery库
 
 > 另外用到了以下插件<br>
